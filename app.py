@@ -47,7 +47,6 @@ def fetch_info():
 )
    chunks=text_splitter.create_documents([transcript])
    embedding_model=HuggingFaceEmbeddings(
-      api_key=os.getenv("HUGGINGFACE_API_TOKEN"),
     model_name="sentence-transformers/all-MiniLM-L6-v2"
    )
    vector_store=Chroma.from_documents(chunks,embedding_model)
