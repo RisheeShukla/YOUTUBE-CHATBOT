@@ -1,0 +1,5 @@
+langchain
+langchain-core
+python-dotenv
+youtube_transcript_api 
+streamlit
