@@ -1,4 +1,3 @@
-
 python-dotenv
 youtube_transcript_api 
 streamlit
@@ -6,3 +5,4 @@ langchain
 langchain-core
 langchain-huggingface
 chromadb
+langchain-community
