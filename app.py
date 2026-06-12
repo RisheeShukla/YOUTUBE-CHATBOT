@@ -46,7 +46,10 @@ def fetch_info():
    chunk_overlap=40
 )
    chunks=text_splitter.create_documents([transcript])
-   embedding_model=HuggingFaceEmbeddings()
+   embedding_model=HuggingFaceEmbeddings(
+      api_key=os.getenv("HUGGINGFACE_API_TOKEN"),
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+   )
    vector_store=Chroma.from_documents(chunks,embedding_model)
    retriever=vector_store.as_retriever(search_tye='mmr',search_kwargs={"k":5})
    def format_docs(retrieved_docs):
