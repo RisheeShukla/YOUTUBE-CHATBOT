@@ -32,13 +32,12 @@ query = st.text_input("Query")
 
 
 def fetch_info():
-   try:
      api = YouTubeTranscriptApi()
      transcript_list = api.fetch(video_id,languages=['en'])
      transcript = " ".join(entry.text for entry in transcript_list)
-   except:
-      st.chat_message("assistant").write("No captions available for this video")
-      return
+     if transcript==" ":
+         st.chat_message("assistant").write("No captions available for this video")
+         return
    
 
    text_splitter=RecursiveCharacterTextSplitter(
