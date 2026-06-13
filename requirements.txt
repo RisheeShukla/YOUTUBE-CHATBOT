@@ -6,4 +6,4 @@ langchain-core
 langchain-huggingface
 chromadb
 langchain-community
-python==3.11.9
+langchain-text-splitters
