@@ -1,4 +1,5 @@
 from youtube_transcript_api import YouTubeTranscriptApi
+from youtube_transcript_api.proxies import WebshareProxyConfig
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEndpoint,ChatHuggingFace,HuggingFaceEmbeddings
 from langchain_core.prompts import PromptTemplate
@@ -33,7 +34,12 @@ query = st.text_input("Query")
 
 def fetch_info():
    try:
-     api = YouTubeTranscriptApi()
+     api = YouTubeTranscriptApi(
+          proxy_config=WebshareProxyConfig(
+        proxy_username="xzslbkjq",
+        proxy_password="4mywjd54yqhh",
+    )
+     )
      transcript_list = api.fetch(video_id,languages=['en'])
      transcript = " ".join(entry.text for entry in transcript_list)
    except Exception as e:
