@@ -1,5 +1,5 @@
 from youtube_transcript_api import YouTubeTranscriptApi
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEndpoint,ChatHuggingFace,HuggingFaceEmbeddings
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnableParallel, RunnablePassthrough, RunnableLambda
@@ -32,12 +32,13 @@ query = st.text_input("Query")
 
 
 def fetch_info():
+   try:
      api = YouTubeTranscriptApi()
      transcript_list = api.fetch(video_id,languages=['en'])
      transcript = " ".join(entry.text for entry in transcript_list)
-     if transcript==" ":
-         st.chat_message("assistant").write("No captions available for this video")
-         return
+   except Exception as e:
+      st.chat_message("assistant").write(f"No captions available for this video {str(e)}")
+      return None
    
 
    text_splitter=RecursiveCharacterTextSplitter(
